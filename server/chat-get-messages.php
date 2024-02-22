@@ -27,11 +27,12 @@ if (isset($_COOKIE['token'])) {
         $key = '41554689';
         $algorithm = 'HS256';
         $user = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
-
-        $bdd = new PDO('mysql:host=localhost;dbname=users', 'sirdasilva', 'Jesus Seul');
-        $bdd->beginTransaction();
         
         if ($user->role === 'CLIENT' || ($user->role === 'ADMIN' && isset($_POST['CLIENT_ID']))) {
+
+            $bdd = new PDO('mysql:host=localhost;dbname=users', 'sirdasilva', 'Jesus Seul');
+            $bdd->beginTransaction();
+            
             // recuperer l'en tete
             $HEAD = $user->role === 'ADMIN'?
                 $bdd->prepare("SELECT id_utilisateur, email, nom, prenom, photo, role FROM users WHERE id_utilisateur = ?"):
@@ -73,9 +74,9 @@ if (isset($_COOKIE['token'])) {
             }
             
             echo json_encode($messages);
+            
+            $bdd->commit();
         }
-
-        $bdd->commit();
     }
     catch (Exception $e) {
         Die("Erreur : " . $e->getMessage());

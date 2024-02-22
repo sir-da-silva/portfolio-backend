@@ -27,11 +27,11 @@ if (isset($_COOKIE['token'])) {
         $key = '41554689';
         $algorithm = 'HS256';
         $user = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
-    
-        $bdd = new PDO('mysql:host=localhost;dbname=projects', 'sirdasilva', 'Jesus Seul');
-        $bdd->beginTransaction();
         
         if ((isset($_POST['identifiant']))) {
+    
+            $bdd = new PDO('mysql:host=localhost;dbname=projects', 'sirdasilva', 'Jesus Seul');
+            $bdd->beginTransaction();
             
             $like = $bdd->prepare("SELECT id_utilisateur FROM likes WHERE id_projet = ? AND id_utilisateur = ? ");
             $like->execute([$_POST['identifiant'], $user->id_utilisateur]);
@@ -46,11 +46,11 @@ if (isset($_COOKIE['token'])) {
                 $set->execute([$_POST['identifiant'], $user->id_utilisateur]);
                 echo 201;
             }
+    
+            $bdd->commit();
         } else {
             echo 400;
         }
-    
-        $bdd->commit();
     }
     catch (Exception $e) {
         Die("Erreur : " . $e->getMessage());

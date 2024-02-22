@@ -28,10 +28,9 @@ if (isset($_COOKIE['token'])) {
         $algorithm = 'HS256';
         $user = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
     
-        $bdd = new PDO('mysql:host=localhost;dbname=users', 'sirdasilva', 'Jesus Seul');
-        $bdd->beginTransaction();
-        
         if($user->role === 'ADMIN') {
+            $bdd = new PDO('mysql:host=localhost;dbname=users', 'sirdasilva', 'Jesus Seul');
+            $bdd->beginTransaction();
     
             $query = $bdd->query(
                 "SELECT DISTINCT COALESCE(m1.id_sender, m1.id_receiver) AS user,
@@ -61,9 +60,9 @@ if (isset($_COOKIE['token'])) {
             }
         
             echo isset($users) ? json_encode($users) : 404;
+
+            $bdd->commit();
         }
-    
-        $bdd->commit();
     }
     catch (Exception $e) {
         Die("Erreur : " . $e->getMessage());

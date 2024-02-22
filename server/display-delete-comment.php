@@ -26,24 +26,22 @@ if (isset($_COOKIE['token'])) {
     try {
         $key = '41554689';
         $algorithm = 'HS256';
-        $user = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
+        $user = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));        
         
-        if ((isset($_POST['identifiant']) && isset($_POST['comment']))) {
+        if ($_POST['id_comment'] && $_POST['id_projet']) {
     
             $bdd = new PDO('mysql:host=localhost;dbname=projects', 'sirdasilva', 'Jesus Seul');
             $bdd->beginTransaction();
-
-            $comment = $bdd->prepare(
-                "INSERT INTO comments (id_utilisateur, id_projet, contenue, time )
-                VALUES (:id_utilisateur, :id_projet, :contenue, :time)"
-            );
-            $comment->execute(array(
-                ':id_utilisateur' => $user->id_utilisateur,
-                ':id_projet' => $_POST['identifiant'],
-                ':contenue' => $_POST['comment'],
-                ':time' => time()
-            ));
-            echo 201;
+            
+            if ($user->role === 'ADMIN') {
+                $delete = $bdd->prepare( "DELETE FROM comments WHERE id = ? AND id_projet = ?");
+                $delete->execute([$_POST['id_comment'], $_POST['id_projet']]);
+                echo 201;
+            } else if ($user->role === 'CLIENT') {
+                $delete = $bdd->prepare("DELETE FROM comments WHERE id = ? AND id_projet = ? AND id_utilisateur = ? ");
+                $delete->execute([$_POST['id_comment'], $_POST['id_projet'], $user->id_utilisateur]);
+                echo 201;
+            }
     
             $bdd->commit();
         } else {

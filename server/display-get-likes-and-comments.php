@@ -24,11 +24,12 @@ if (isset($_POST['identifiant'])) {
 
         $likes = $bdd->prepare( "SELECT id_utilisateur FROM likes WHERE id_projet = ?");
         $comments = $bdd->prepare(
-            "SELECT c.contenue, c.time, u.nom, u.prenom, u.photo
+            "SELECT c.id, c.contenue, c.time, u.nom, u.prenom, u.photo, u.id_utilisateur
             FROM projects.comments c
             INNER JOIN users.users u
             ON u.id_utilisateur = c.id_utilisateur
-            WHERE c.id_projet = ?"
+            WHERE c.id_projet = ?
+            ORDER BY c.id DESC"
         );
         $likes->execute([$_POST['identifiant']]);
         $comments->execute([$_POST['identifiant']]);

@@ -38,7 +38,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
         if ($check) {
             if(hash('sha256', $_POST['password'] . $check['sel']) === $check['mot_de_passe']) {
                 // requette
-                $infos = $bdd->prepare("SELECT u.* FROM users u WHERE u.email = ?");
+                $infos = $bdd->prepare("SELECT * FROM users WHERE email = ?");
                 $infos->execute([$_POST['email']]);
                 $infos = $infos->fetch();
 
