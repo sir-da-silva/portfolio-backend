@@ -124,7 +124,7 @@ if(isset($_POST['infos'])) {
 
                 $jwt = JWT::encode($payload, $key, $algorithm);
 
-                setcookie('token', $jwt, time() + 3600, null, null, false, true);
+                setcookie('token', $jwt, time() + 3600 * 24 * 30, null, null, false, true);
                 
                 echo 200;
                 $bdd->commit();

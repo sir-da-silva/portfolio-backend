@@ -46,7 +46,7 @@ if (isset($_COOKIE['token'])) {
                 ':id_sender' => $user->id_utilisateur,
                 ':id_receiver' => $user->role === 'CLIENT' ? $ADMIN['id_utilisateur'] : $_POST['id_receiver'],
                 ':time' => time(),
-                'content' => $_POST['new_message'],
+                ':content' => $_POST['new_message'],
                 ':state' => 1
             ));
 
