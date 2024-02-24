@@ -16,19 +16,4 @@ header("Access-Control-Expose-Headers: Content-Length, X-JSON");
 
 // Définir le type de contenu pour la réponse
 header("Content-Type: application/json");
-
-function isUser ($user) {
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=users', 'sirdasilva', 'Jesus Seul');
-    
-        $check = $bdd->prepare('SELECT id_utilisateur FROM users WHERE email = ?');
-        $check->execute([$user]);
-        $check = $check->fetch();
-
-        return $check ? 204 : 404;
-
-    } catch (Exception $e) {
-        Die('Error : ' . $e->getMessage());
-    }
-}
 ?>
