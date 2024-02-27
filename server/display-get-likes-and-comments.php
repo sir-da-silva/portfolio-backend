@@ -1,4 +1,5 @@
 <?php
+require 'headers1.php';
 require 'credentials.php';
 if (isset($_POST['identifiant'])) {
     try {
