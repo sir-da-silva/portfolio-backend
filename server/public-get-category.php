@@ -3,7 +3,7 @@ require 'headers1.php';
 require 'credentials.php';
 if (isset($_POST['category'])) {
     try {
-        $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+        $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
 
         $query = $bdd->prepare("SELECT identifiant, titre FROM projects WHERE JSON_CONTAINS(categories, JSON_OBJECT(?, true))");
         $query->execute([$_POST['category']]);

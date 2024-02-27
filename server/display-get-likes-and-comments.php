@@ -3,7 +3,7 @@ require 'headers1.php';
 require 'credentials.php';
 if (isset($_POST['identifiant'])) {
     try {
-        $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+        $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
         $bdd->beginTransaction();
 
         $infos['likes'] = [];

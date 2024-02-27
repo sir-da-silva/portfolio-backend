@@ -21,7 +21,7 @@ if(isset($_COOKIE['token'])) {
             )
         ) {
 
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
             $bdd->beginTransaction();
             
             // Convertion du texte JSON en objet

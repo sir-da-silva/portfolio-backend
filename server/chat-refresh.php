@@ -14,7 +14,7 @@ if (isset($_COOKIE['token'])) {
         
         if (isset($_POST['limite']) && is_numeric($_POST['limite']) && ($user->role === 'CLIENT' || $user->role === 'ADMIN')) {
 
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBusersDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$usersDB", $usersDBusername, $usersDBpassword);
             $bdd->beginTransaction();
 
             if ($user->role === 'CLIENT') {

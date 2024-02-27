@@ -14,7 +14,7 @@ if (isset($_COOKIE['token'])) {
         
         if ((isset($_POST['identifiant']))) {
     
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
             $bdd->beginTransaction();
             
             $like = $bdd->prepare("SELECT id_utilisateur FROM likes WHERE id_projet = ? AND id_utilisateur = ? ");

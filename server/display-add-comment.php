@@ -14,7 +14,7 @@ if (isset($_COOKIE['token'])) {
         
         if ((isset($_POST['identifiant']) && isset($_POST['comment']))) {
     
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
             $bdd->beginTransaction();
 
             $comment = $bdd->prepare(

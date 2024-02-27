@@ -12,7 +12,7 @@ if(isset($_COOKIE['token'])) {
 
     try {
         $user = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
-        $bdd = new PDO("mysql:host=$DBhost;dbname=$DBusersDB", $DBusername, $DBpassword);
+        $bdd = new PDO("mysql:host=$DBhost;dbname=$usersDB", $usersDBusername, $usersDBpassword);
 
         $infos = $bdd->prepare("SELECT * FROM users WHERE id_utilisateur = ?");
         $infos->execute([$user->id_utilisateur]);

@@ -9,7 +9,7 @@ if(isset($_POST['infos'])) {
     try {
         $infos = json_decode($_POST['infos']);
 
-        $bdd = new PDO("mysql:host=$DBhost;dbname=$DBusersDB", $DBusername, $DBpassword); 
+        $bdd = new PDO("mysql:host=$DBhost;dbname=$usersDB", $usersDBusername, $usersDBpassword); 
         $bdd->beginTransaction();
 
         if (!isset($infos->email) || !trim($infos->email))

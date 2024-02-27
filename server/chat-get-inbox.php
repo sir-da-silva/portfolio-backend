@@ -13,7 +13,7 @@ if (isset($_COOKIE['token'])) {
         $user = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
     
         if($user->role === 'ADMIN') {
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBusersDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$usersDB", $usersDBusername, $usersDBpassword);
             $bdd->beginTransaction();
 
             $req1 = "SELECT DISTINCT COALESCE(m1.id_sender, m1.id_receiver) AS user,

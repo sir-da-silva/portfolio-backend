@@ -1,7 +1,11 @@
 <?php
     $DBhost = 'localhost';
-    $DBusername = 'sirdasilva';
-    $DBpassword = 'Jesus Seul';
-    $DBprojectsDB = 'projects';
-    $DBusersDB = 'users';
+
+    $projectsDB = 'projects';
+    $projectsDBusername = 'sirdasilva';
+    $projectsDBpassword = 'Jesus Seul';
+
+    $usersDB ='users';
+    $usersDBusername = 'sirdasilva';
+    $usersDBpassword = 'Jesus Seul';
 ?>

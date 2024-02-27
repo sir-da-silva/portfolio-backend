@@ -3,7 +3,7 @@ require 'headers1.php';
 require 'credentials.php';
 if (isset($_POST['identifiant'])) {
     try {
-        $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+        $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
 
         $query = $bdd->prepare("SELECT * FROM projects WHERE identifiant = ?");
         $query->execute([$_POST['identifiant']]);

@@ -14,7 +14,7 @@ if (isset($_COOKIE['token'])) {
         
         if ($_POST['id_comment'] && $_POST['id_projet']) {
     
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
             $bdd->beginTransaction();
             
             if ($user->role === 'ADMIN') {

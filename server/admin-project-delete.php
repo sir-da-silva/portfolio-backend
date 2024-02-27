@@ -14,7 +14,7 @@ if(isset($_COOKIE['token'])) {
 
         if ($user->role === 'ADMIN' && isset($_POST['identifiant'])) {
 
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBprojectsDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$projectsDB", $projectsDBusername, $projectsDBpassword);
             $bdd->beginTransaction();
 
             $images = $bdd->prepare('SELECT images FROM projects WHERE identifiant = ?');

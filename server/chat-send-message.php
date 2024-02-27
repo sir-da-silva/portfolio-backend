@@ -14,7 +14,7 @@ if (isset($_COOKIE['token'])) {
         
         if (($user->role === 'CLIENT' && isset($_POST['new_message'])) || ($user->role === 'ADMIN' && isset($_POST['new_message']) && isset($_POST['id_receiver']))) {
 
-            $bdd = new PDO("mysql:host=$DBhost;dbname=$DBusersDB", $DBusername, $DBpassword);
+            $bdd = new PDO("mysql:host=$DBhost;dbname=$usersDB", $usersDBusername, $usersDBpassword);
             $bdd->beginTransaction();
 
             if($user->role === 'CLIENT') {

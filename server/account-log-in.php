@@ -8,7 +8,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     sleep(1);
 
     try {
-        $bdd = new PDO("mysql:host=$DBhost;dbname=$DBusersDB", $DBusername, $DBpassword);
+        $bdd = new PDO("mysql:host=$DBhost;dbname=$usersDB", $usersDBusername, $usersDBpassword);
 
         // verification
         $check = $bdd->prepare("SELECT u.id_utilisateur, p.mot_de_passe, p.sel
