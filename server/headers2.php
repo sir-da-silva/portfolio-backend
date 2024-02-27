@@ -1,6 +1,6 @@
 <?php
 // Autoriser l'accès depuis n'importe quelle origine
-header("Access-Control-Allow-Origin: http://portfolio.build");
+header("Access-Control-Allow-Origin: http://localhost:5173");
 
 // Autoriser les méthodes HTTP spécifiées
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
