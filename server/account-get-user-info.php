@@ -21,6 +21,9 @@ if(isset($_COOKIE['token'])) {
         echo json_encode($infos);
 
     } catch (Exception $e) {
+        $errorMessage = "[" . date('Y-m-d H:i:s') . "] Erreur : " . $e->getMessage() . " dans le fichier " . $e->getFile() . " à la ligne " . $e->getLine() . " - Adresse IP : " . $_SERVER['REMOTE_ADDR'] . "\n";
+        error_log($errorMessage, 3, "debug/error.log");
+        
         Die('Erreur : ' . $e->getMessage());
     }
     

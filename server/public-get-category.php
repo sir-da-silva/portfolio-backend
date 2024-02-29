@@ -13,6 +13,9 @@ if (isset($_POST['category'])) {
         echo isset($data) ? json_encode($data) : 404;
     }
     catch (Exception $e) {
+        $errorMessage = "[" . date('Y-m-d H:i:s') . "] Erreur : " . $e->getMessage() . " dans le fichier " . $e->getFile() . " à la ligne " . $e->getLine() . " - Adresse IP : " . $_SERVER['REMOTE_ADDR'] . "\n";
+        error_log($errorMessage, 3, "debug/error.log");
+        
         Die("500");
     }
 }
